@@ -1,4 +1,5 @@
 from stats import count_chars, count_words, sort_chars
+import sys
 
 RELPATH = "./books/frankenstein.txt"
 
@@ -7,8 +8,14 @@ def get_book_text(filepath):
         contents = f.read()
     return contents
 
+def run_commands():
+    if len(sys.argv) < 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    return sys.argv[1]
+
 def main():
-    book_text = get_book_text(RELPATH)
+    book_text = get_book_text(run_commands())
     number_of_words = count_words(book_text)
     number_of_chars = count_chars(book_text)
     sorted_dictionaries = sort_chars(number_of_chars)
